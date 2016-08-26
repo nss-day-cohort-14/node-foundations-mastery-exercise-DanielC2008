@@ -5,19 +5,18 @@
 const { createReadStream } = require('fs')
 const es  = require('event-stream')
 const transform = require('./limit-ten')
-const match = require('./match')
 const readStream = createReadStream('en.txt')
 
-let [,,...rest] = process.argv
-rest[0] === undefined ?
+let [,,searchWord] = process.argv
+searchWord === undefined ?
 	console.log("Usage: [word-search]")
 	:
 		readStream
 			.pipe(es.split())
   		.pipe(es.map((word, cb) => {
-  			let check = rest[0].toLowerCase()
-  			if (match(word, check) === true) {
-  				cb(null, word);
+  			let check = searchWord.toLowerCase()
+  			if (word.includes(check) && word.startsWith(check)) {
+  				cb(null, `${word}\n`);
   			} else {
   				cb()
   			}
