@@ -15,7 +15,8 @@ rest[0] === undefined ?
 		readStream
 			.pipe(es.split())
   		.pipe(es.map((word, cb) => {
-  			if (match(word, rest[0]) === true) {
+  			let check = rest[0].toLowerCase()
+  			if (match(word, check) === true) {
   				cb(null, word);
   			} else {
   				cb()
