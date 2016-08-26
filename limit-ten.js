@@ -1,5 +1,9 @@
-function limitTen(argsArr) {
-	(argsArr.length) >= 10 ? console.log("Limit Search to 10 words") : console.log("heelo");
-}
+const { Transform } = require('stream')
 
-module.exports = {limitTen}
+module.exports = Transform({
+	transform(buffer, encoding, cb) {
+		 // console.log("buffer", buffer);
+	}
+})
+
+
