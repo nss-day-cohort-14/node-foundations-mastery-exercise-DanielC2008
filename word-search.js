@@ -3,4 +3,5 @@
 "use strict";
 
 let [,,...rest] = process.argv
-console.log(rest);
+rest[0] === undefined ? console.log("Usage: word-search req1 [args <= 10]") : console.log("hello");
+
