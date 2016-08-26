@@ -11,18 +11,17 @@ let [,,searchWord] = process.argv
 searchWord === undefined ?
 	console.log("Usage: [word-search]")
 	:
-		readStream
-			.pipe(es.split())
-  		.pipe(es.map((word, cb) => {
-  			let check = searchWord.toLowerCase()
-  			if (word.includes(check) && word.startsWith(check)) {
-  				cb(null, `${word}\n`);
-  			} else {
-  				cb()
-  			}
-  		}))
-			.pipe(process.stdout)
-
-	// .pipe(transform).pipe(process.stdout);
+	readStream
+		.pipe(es.split())
+		.pipe(es.map((word, cb) => {
+			let check = searchWord.toLowerCase()
+			if (word.includes(check) && word.startsWith(check)) {
+				cb(null, `${word}\n`);
+			} else {
+				cb()
+			}
+		}))
+		.pipe(transform)
+		.pipe(process.stdout)
 
 

@@ -1,8 +1,8 @@
 const { Transform } = require('stream')
-
+let i = 0
 module.exports = Transform({
 	transform(buffer, encoding, cb) {
-		 // console.log("buffer", buffer);
+		i >= 10 ? cb(null) : (i++, cb(null, buffer))
 	}
 })
 
